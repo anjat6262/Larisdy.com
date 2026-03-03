@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Larisdy - Premium Sambal Indonesia</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo" onclick="showPage('home')">
+          <img src="images/logo.jpeg" alt="Larisdy Logo" class="logo-image" />
+          <span class="logo-text">Larisdy</span>
+        </div>
+
+        <nav class="nav">
+          <a href="#home" class="nav-link active" data-page="home">Beranda</a>
+          <a href="#products" class="nav-link" data-page="products">Koleksi</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="cart-btn" id="cartBtn" aria-label="Keranjang Belanja">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path
+                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+              />
+            </svg>
+            <span class="cart-badge" id="cartBadge" style="display: none"
+              >0</span
+            >
+          </button>
+
+          <button class="btn-primary" id="authBtn">Masuk</button>
+
+          <div class="user-menu" id="userMenu" style="display: none">
+            <span id="userName"></span>
+            <button class="btn-secondary" id="accountBtn">Akun</button>
+            <button class="btn-primary" id="logoutBtn">Keluar</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+      <!-- Home Page -->
+      <div id="homePage" class="page active">
+        <section class="hero">
+          <div class="container hero-content">
+            <img src="images/logo.jpeg" alt="Larisdy Logo" class="hero-logo" />
+            <h1 class="hero-title">Warisan Rasa Nusantara</h1>
+            <p class="hero-subtitle">
+              Pengalaman kuliner autentik dengan sambal premium berkualitas
+              tinggi, dibuat dengan resep tradisional dan bahan pilihan terbaik
+            </p>
+            <button class="btn-hero" onclick="showPage('products')">
+              Jelajahi Koleksi
+            </button>
+          </div>
+        </section>
+
+        <section class="features">
+          <div class="container">
+            <div class="features-grid">
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    />
+                  </svg>
+                </div>
+                <h3>Kualitas Premium</h3>
+                <p>
+                  Dipilih dengan cermat dari cabai terbaik dan bumbu berkualitas
+                  tinggi untuk menghasilkan cita rasa yang sempurna
+                </p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <h3>Higienis & Terjamin</h3>
+                <p>
+                  Diproduksi dengan standar kebersihan tertinggi dan proses
+                  quality control yang ketat
+                </p>
+              </div>
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="1" y="3" width="15" height="13" />
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                    <circle cx="5.5" cy="18.5" r="2.5" />
+                    <circle cx="18.5" cy="18.5" r="2.5" />
+                  </svg>
+                </div>
+                <h3>Pengiriman Terpercaya</h3>
+                <p>
+                  Layanan pengiriman cepat ke seluruh Indonesia dengan
+                  pengemasan yang aman dan rapi
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="featured-products">
+          <div class="container">
+            <h2 class="section-title">Koleksi Terpilih</h2>
+            <p class="page-subtitle">
+              Produk pilihan dengan cita rasa yang telah dipercaya
+            </p>
+            <div id="featuredProductsGrid" class="products-grid"></div>
+            <div class="text-center" style="margin-top: 3rem">
+              <button class="btn-primary" onclick="showPage('products')">
+                Lihat Semua Koleksi
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Products Page -->
+      <div id="productsPage" class="page">
+        <div class="container">
+          <h1 class="page-title">Katalog Produk</h1>
+          <p class="page-subtitle">
+            Pilih sambal favorit Anda dari berbagai varian
+          </p>
+
+          <div class="category-filter" id="categoryFilter"></div>
+
+          <div id="productsGrid" class="products-grid"></div>
+        </div>
+      </div>
+
+      <!-- Product Detail Page -->
+      <div id="productDetailPage" class="page">
+        <div class="container">
+          <button class="btn-back" onclick="showPage('products')">
+            ← Kembali
+          </button>
+          <div id="productDetail"></div>
+        </div>
+      </div>
+
+      <!-- Cart Page -->
+      <div id="cartPage" class="page">
+        <div class="container">
+          <h1 class="page-title">Keranjang Belanja</h1>
+          <div id="cartContent"></div>
+        </div>
+      </div>
+
+      <!-- Login Page -->
+      <div id="loginPage" class="page">
+        <div class="auth-container">
+          <div class="auth-card">
+            <div class="auth-logo">
+              <img
+                src="images/logo.jpeg"
+                alt="Larisdy Logo"
+                class="logo-image"
+              />
+              <span class="logo-text">Larisdy</span>
+            </div>
+            <h2>Selamat Datang Kembali</h2>
+            <p class="auth-subtitle">Masuk ke akun Anda untuk melanjutkan</p>
+
+            <form id="loginForm" class="auth-form">
+              <div class="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  id="loginEmail"
+                  placeholder="nama@email.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  id="loginPassword"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn-primary btn-block">Masuk</button>
+            </form>
+
+            <div class="auth-divider">atau</div>
+
+            <p class="auth-link">
+              Belum punya akun?
+              <a href="#" onclick="showPage('register')">Daftar Sekarang</a>
+            </p>
+
+            <div class="demo-info">
+              <p><strong>Demo Login:</strong></p>
+              <p>Email: demo@larisdy.com<br />Password: demo123</p>
+              <button class="btn-secondary" onclick="useDemoCredentials()">
+                Gunakan kredensial demo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Register Page -->
+      <div id="registerPage" class="page">
+        <div class="auth-container">
+          <div class="auth-card">
+            <div class="auth-logo">
+              <img
+                src="images/logo.jpeg"
+                alt="Larisdy Logo"
+                class="logo-image"
+              />
+              <span class="logo-text">Larisdy</span>
+            </div>
+            <h2>Buat Akun Baru</h2>
+            <p class="auth-subtitle">
+              Daftar untuk mulai berbelanja sambal terbaik
+            </p>
+
+            <form id="registerForm" class="auth-form">
+              <div class="form-group">
+                <label>Nama Lengkap</label>
+                <input
+                  type="text"
+                  id="regName"
+                  placeholder="John Doe"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  id="regEmail"
+                  placeholder="nama@email.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Nomor Telepon</label>
+                <input
+                  type="tel"
+                  id="regPhone"
+                  placeholder="0812-3456-7890"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Alamat Lengkap</label>
+                <textarea
+                  id="regAddress"
+                  placeholder="Jl. Contoh No. 123, Jakarta"
+                  required
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  id="regPassword"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Konfirmasi Password</label>
+                <input
+                  type="password"
+                  id="regConfirmPassword"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn-primary btn-block">
+                Daftar
+              </button>
+            </form>
+
+            <div class="auth-divider">atau</div>
+
+            <p class="auth-link">
+              Sudah punya akun?
+              <a href="#" onclick="showPage('login')">Masuk</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Checkout Page -->
+      <div id="checkoutPage" class="page">
+        <div class="container">
+          <h1 class="page-title">Checkout</h1>
+          <div id="checkoutContent"></div>
+        </div>
+      </div>
+
+      <!-- Account Page -->
+      <div id="accountPage" class="page">
+        <div class="container">
+          <h1 class="page-title">Akun Saya</h1>
+          <div id="accountContent"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">
+              <img
+                src="images/logo.jpeg"
+                alt="Larisdy Logo"
+                class="logo-image"
+              />
+              <span class="logo-text">Larisdy</span>
+            </div>
+            <p>Sambal pilihan dengan cita rasa autentik Indonesia.</p>
+          </div>
+          <div>
+            <h4>Navigasi</h4>
+            <ul class="footer-links">
+              <li><a href="#" onclick="showPage('home')">Beranda</a></li>
+              <li><a href="#" onclick="showPage('products')">Produk</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Kontak</h4>
+            <ul class="footer-links">
+              <li>Email: info@larisdy.com</li>
+              <li>Telepon: 0812-3456-7890</li>
+              <li>Jakarta, Indonesia</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Larisdy. Semua hak dilindungi.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
